@@ -10,11 +10,13 @@ import streamlit as st
 # import os, urllib, cv2
 import mpld3
 import streamlit.components.v1 as components
-
+import os 
+dir_path = os.path.dirname(os.path.realpath(__file__))
 
 st.set_page_config(layout="wide")
 
 def main():
+    global dir_path
    #global number, readme_text
     
     # Render the readme as markdown using st.markdown.
@@ -69,7 +71,7 @@ def run_the_app():
         return pd.read_excel(open(url, 'rb'), sheet_name="Adjacency List Directed")
     number = st.sidebar.slider("Minimum Partnership Runs", 0, 150, 50)
     #loading dataset 
-    file ="/dataset/PSL Data.xlsx"
+    file = dir_path + "/dataset/PSL Data.xlsx"
     #df = pd.read_excel(open(file, 'rb'), sheet_name="Adjacency List Directed")
     df = load_metadata(file)
     df2 =df 
@@ -177,7 +179,7 @@ def make_graph(G, title1):
 @st.experimental_singleton(show_spinner=False)
 def get_file_content_as_string(path):
     #url = 'http://localhost:8501/' + path
-    url = "/" + path # 'D:\\Online Drives\\OneDrive - Institute of Business Administration\\MS Data Sciences\Social Networking\\' + path
+    url =  dir_path + path # 'D:\\Online Drives\\OneDrive - Institute of Business Administration\\MS Data Sciences\Social Networking\\' + path
     myfile = open(url)
     return_response = myfile.read()
     # print(url)
@@ -186,9 +188,9 @@ def get_file_content_as_string(path):
     return return_response
 
 
-# def content_pub(type, content):
-#     if type.lower() == 'title': title = st.title (content)
-#     if type.lower() == 'message': message = st.markdown(content)
+def content_pub(type, content):
+    if type.lower() == 'title': title = st.title (content)
+    if type.lower() == 'message': message = st.markdown(content)
 
 # title = st.title('Cricket Network Graph')
 # readme_text = st.markdown(get_file_content_as_string("instructions.md"))
