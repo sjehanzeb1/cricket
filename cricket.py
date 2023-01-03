@@ -18,7 +18,24 @@ st.set_page_config(layout="wide")
 def main():
     global dir_path
    #global number, readme_text
-    
+    remove_white_space = """
+        <style>
+               .css-18e3th9 {
+                    padding-top: 0rem;
+                    padding-bottom: 10rem;
+                    padding-left: 5rem;
+                    padding-right: 5rem;
+                }
+               .css-1d391kg {
+                    padding-top: 3.5rem;
+                    padding-right: 1rem;
+                    padding-bottom: 3.5rem;
+                    padding-left: 1rem;
+                }
+        </style>
+        """
+    st.markdown(remove_white_space, unsafe_allow_html=True)
+    st.sidebar.markdown(remove_white_space, unsafe_allow_html=True)
     # Render the readme as markdown using st.markdown.
     # if app_mode == st.title('Cricket Network Graph')
     # readme_text = st.markdown(get_file_content_as_string("instructions.md"))
@@ -33,12 +50,13 @@ def main():
     
     # st.sidebar.title("Cricket Analysis \n by \n Syed Jehanzeb", )
     st.sidebar.markdown("""<h1 style='text-align: center;'>
-    Cricket Network Graph Analysis <br>
-    by <br>
+    Cricket Network Graph  </br>
+    by </br>
     Syed Jehanzeb</h1>
-    <h3 style='text-align: center;'>syed.zeb at gmail.com<br>
-    <a style='text-align: center;', href='https://pk.linkedin.com/in/syedzeb'>LinkedIn</a></h3><br>"""
-    , unsafe_allow_html=True)
+    <h3 style='text-align: center'>syed.zeb at gmail.com</br>
+    <a  href='https://pk.linkedin.com/in/syedzeb'> LinkedIn </a> 
+    </h3><br>""", 
+    unsafe_allow_html=True)
     # st.sidebar.header("by")
     # st.sidebar.header("_Syed Jehanzeb_") 
     # st.sidebar.header("_Syed Jehanzeb_") 
@@ -51,8 +69,13 @@ def main():
 
     if app_mode == "About":
         st.sidebar.success('To continue select a Tournament')
+        st.markdown("<br><br>")
         st.title('Cricket Network Graph')
         st.markdown(get_file_content_as_string("instructions.md"))
+        with open(dir_path + "/report.pdf", "rb") as pdf_file:
+            PDFbyte = pdf_file.read()
+        st.download_button(label="Download Research Paper",
+        data=PDFbyte, file_name="research_paper.pdf", mime='application/octet-stream')
     # elif app_mode == "Show the source code":
     #     readme_text.empty()
     #     st.code(get_file_content_as_string("streamlit_app.py"))
