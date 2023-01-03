@@ -179,7 +179,7 @@ def make_graph(G, title1):
 @st.experimental_singleton(show_spinner=False)
 def get_file_content_as_string(path):
     #url = 'http://localhost:8501/' + path
-    url =  dir_path + path # 'D:\\Online Drives\\OneDrive - Institute of Business Administration\\MS Data Sciences\Social Networking\\' + path
+    url =  dir_path + "/" + path # 'D:\\Online Drives\\OneDrive - Institute of Business Administration\\MS Data Sciences\Social Networking\\' + path
     myfile = open(url)
     return_response = myfile.read()
     # print(url)
