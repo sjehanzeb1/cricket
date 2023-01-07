@@ -194,7 +194,8 @@ def make_graph(G, title1):
     plt.tight_layout()
     # plt.show()
     fig_html = mpld3.fig_to_html(fig)
-    components.html(fig_html, height=1000)
+    # components.html(fig_html, height=1000)
+    st.pyplot(fig_html)
     # st.pyplot(fig)
 
 
